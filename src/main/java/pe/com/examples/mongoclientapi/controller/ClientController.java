@@ -31,8 +31,8 @@ public class ClientController {
     }
 
     @PutMapping("/clients/{id}")
-    public void updateClient(@PathVariable String id, @RequestBody ClientDto clientDto) {
-        this.clientService.updateClient(id, clientDto);
+    public ClientDto updateClient(@PathVariable String id, @RequestBody ClientDto clientDto) {
+        return this.clientService.updateClient(id, clientDto);
     }
 
     @DeleteMapping("/clients/{id}")

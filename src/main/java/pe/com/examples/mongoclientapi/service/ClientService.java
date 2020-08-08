@@ -38,9 +38,13 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
-    public void updateClient(String id, ClientDto clientDto) {
-        this.clientRepository.save(Client.builder().id(id).name(clientDto.getName()).lastName(clientDto.getLastName())
-                .age(clientDto.getAge()).birthDate(clientDto.getBirthDate()).build());
+    public ClientDto updateClient(String id, ClientDto clientDto) {
+        Client client = this.clientRepository
+                .save(Client.builder().id(id).name(clientDto.getName()).lastName(clientDto.getLastName()).age(clientDto.getAge())
+                        .birthDate(clientDto.getBirthDate()).build());
+
+        return ClientDto.builder().id(client.getId()).name(client.getName()).lastName(client.getLastName())
+                .age(client.getAge()).birthDate(client.getBirthDate()).build();
     }
 
     public void deleteClient(String id) {
