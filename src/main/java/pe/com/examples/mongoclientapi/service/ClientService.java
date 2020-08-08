@@ -38,6 +38,11 @@ public class ClientService {
                 .collect(Collectors.toList());
     }
 
+    public void updateClient(String id, ClientDto clientDto) {
+        this.clientRepository.save(Client.builder().id(id).name(clientDto.getName()).lastName(clientDto.getLastName())
+                .age(clientDto.getAge()).birthDate(clientDto.getBirthDate()).build());
+    }
+
     public void deleteClient(String id) {
         this.clientRepository.deleteById(id);
     }
